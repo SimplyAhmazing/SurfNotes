@@ -1,0 +1,38 @@
+{
+    "name": "Better Notes",
+    "version": "0.1.0",
+    "manifest_version": 2,
+    "browser_action" : {
+        "default_icon": {
+            "19": "imgs/bn-sm.png",
+            "38": "imgs/bn-md.png"
+        },
+        "default_title": "Better Notes",
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts" : ["js/index.js"],
+        "persistent": true
+    },
+    "permissions": [
+        "contextMenus",
+        "tabs",
+        "activeTab"
+    ],
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": [
+            // Utils scripts
+            "js/jquery.js",
+            "js/jquery-ui.js",
+            "js/handlebars.js",
+
+            // App scripts
+            "js/content.js"
+        ],
+        "css": [
+            "css/jquery-ui.css",
+            "css/note.css"
+        ]
+    }]
+}

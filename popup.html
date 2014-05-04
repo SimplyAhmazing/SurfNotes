@@ -1,0 +1,25 @@
+<!-- popup.html-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+<div style="width:200px">
+    <button id="new-note">New Note</button><br>
+    <button id="load-notes">Load Notes</button><br>
+    <button id="note-visibility">Hide Notes</button><br>
+</div>
+
+<div class="templates" style="display: none;">
+    <div id="note" class="note template">
+        <label>Title</label>
+        <input id="title" type="text" placeholder="title (optional)"><br>
+
+        <label>Time Created</label>
+        <input id="created_at" type="text" value="{{ created_at }}"><br>
+
+        <label>Website</label>
+        <input id="site" type="url" value="{{ site }}"><br>
+        <hr>
+        <textarea id="notearea"></textarea>
+        <button id="save-note-{{uuid}}">save</button>
+        <button id="delete-note-{{uuid}}">delete</button>
+    </div>
+</div>

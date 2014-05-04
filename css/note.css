@@ -1,0 +1,23 @@
+.note{
+    width: 250px;
+    height: 350px;
+
+    z-index: 1000;
+    float: left;
+    display: block;
+    /* position: fixed; */
+    top: 100px;
+    right: 10px;
+
+    background-color: blue;
+    border: 2px solid;
+}
+
+.note textarea{
+    margin: 0px auto;
+    width: 90%;
+    height: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
