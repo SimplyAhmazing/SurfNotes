@@ -1,5 +1,5 @@
 {
-    "name": "Better Notes",
+    "name": "Surf Notes",
     "version": "0.1.0",
     "manifest_version": 2,
     "browser_action" : {
@@ -7,7 +7,7 @@
             "19": "imgs/bn-sm.png",
             "38": "imgs/bn-md.png"
         },
-        "default_title": "Better Notes",
+        "default_title": "Surf Notes",
         "default_popup": "popup.html"
     },
     "background": {

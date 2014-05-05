@@ -8,18 +8,18 @@
 </div>
 
 <div class="templates" style="display: none;">
-    <div id="note" class="note template">
+    <form id="note" class="note template">
         <label>Title</label>
-        <input id="title" type="text" placeholder="title (optional)"><br>
+        <input id="title" type="text" name="title" placeholder="title (optional)"><br>
 
         <label>Time Created</label>
-        <input id="created_at" type="text" value="{{ created_at }}"><br>
+        <input id="created_at" type="text" name="created_at" value="{{ created_at }}"><br>
 
         <label>Website</label>
-        <input id="site" type="url" value="{{ site }}"><br>
+        <input id="site" type="url" name="site" value="{{ site }}"><br>
         <hr>
-        <textarea id="notearea"></textarea>
-        <button id="save-note-{{uuid}}">save</button>
-        <button id="delete-note-{{uuid}}">delete</button>
-    </div>
+        <textarea id="notearea-{{uuid}}" name="note_content"></textarea>
+        <button id="save-note-{{uuid}}" type="button">Finish</button>
+        <button id="delete-note-{{uuid}}" type="button">Delete</button>
+    </form>
 </div>
