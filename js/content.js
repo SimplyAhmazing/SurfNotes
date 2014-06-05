@@ -6,27 +6,60 @@ function buildNote(top, right, bottom, left){
     // var note_bottom = bottom || '0px';
     // var note_left = left || '0px';
 
+    var noteURL = chrome.extension.getURL('html/iframes/note.html');
+
     var noteUUID = guid();
     var tabUrl = window.location.href;
-    var newTemplateContext = {
-        created_at: new Date(),
-        site: tabUrl,
-        uuid: noteUUID
-    };
-    var templateObj = Handlebars.compile(HTML_TEMPLATES.note);
-    var template = templateObj(newTemplateContext);
-    $noteDiv = $(template);
-    $noteDiv.resizable();
-    $noteDiv.draggable();
-    $noteDiv.css('position', 'fixed');
-    $noteDiv.addClass(noteUUID);
-    $noteDiv.data('uuid', noteUUID);
+    // var newTemplateContext = {
+    //     created_at: new Date(),
+    //     site: tabUrl,
+    //     uuid: noteUUID
+    // };
+    // var templateObj = Handlebars.compile(HTML_TEMPLATES.note);
+    // var template = templateObj(newTemplateContext);
 
-    attachSaveListener($noteDiv, '#save-note-' + noteUUID);
-    attachAutoSaveListener($noteDiv, '#notearea-' + noteUUID);
-    attachDeleteListener($noteDiv, '#delete-note-' + noteUUID);
+    // $noteDiv = $(template);
+    //
+    $noteFrame = $(
+        '<iframe />',
+        {
+            id:'note-'+ noteUUID,
+            src:noteURL + '?noteUUID=' + noteUUID,
+            scrolling:false
+        }
+    );
+    $noteFrame.attr('draggable', true);
+    // debugger;
+    // var $noteDiv = $('<div>').append($noteFrame);
+    var $noteDiv = $noteFrame;
+
+    // $noteDiv.addClass('note');
+
+    $noteDiv.css('position', 'fixed');
+    $noteDiv.css('right', '5px');
+    $noteDiv.css('top', '100px');
+    $noteDiv.css('z-index', 1000000);
+
+    // $noteDiv.resizable();
+    // $noteDiv.draggable(
+    //     {iframeFix: true,
+    //         // appendTo: 'body',
+    //         // zIndex: 9999,
+    //         // cursor: "move",
+    //         // distance: 10,
+    // });
+    // $noteDiv.draggable("option", "iframeFix");
+    // $noteDiv.draggable("option", "iframeFix", true);
+    // $noteDiv.addClass(noteUUID);
+    // $noteDiv.data('uuid', noteUUID);
+
+    // attachSaveListener($noteDiv, '#save-note-' + noteUUID);
+    // attachAutoSaveListener($noteDiv, '#notearea-' + noteUUID);
+    // attachDeleteListener($noteDiv, '#delete-note-' + noteUUID);
 
     return $noteDiv;
+}
+function attachiFrameLoaded(iframecontainer){
 }
 
 function addToPage(note){

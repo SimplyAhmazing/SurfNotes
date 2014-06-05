@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../../css/jquery-ui.css">
+        <script rel="text/javascript" src="../../js/jquery.js"></script>
+        <script rel="text/javascript" src="../../js/jquery-ui.js"></script>
+        <script rel="text/javascript" src="../../js/handlebars.js"></script>
+
+        <script rel="text/javascript" src="../../js/iframes/note.js"></script>
+        <link rel="stylesheet" href="../../css/iframes/note.css">
+    </head>
+    <body>
+        <form id="note" class="note template">
+            <label>Title</label>
+            <input id="title" type="text" name="title" placeholder="title (optional)"><br>
+
+            <label>Time Created</label>
+            <input id="created_at" type="text" name="created_at" value="{{ created_at }}"><br>
+
+            <label>Website</label>
+            <input id="site" type="url" name="site" value="{{ site }}"><br>
+            <hr>
+            <textarea id="notearea-{{uuid}}" name="note_content"></textarea>
+            <button id="save-note-{{uuid}}" type="button">Finish</button>
+            <button id="delete-note-{{uuid}}" type="button">Delete</button>
+        </form>
+    </body>
+</html>
