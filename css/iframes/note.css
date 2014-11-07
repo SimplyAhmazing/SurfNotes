@@ -1,23 +1,65 @@
-.note{
-    width: 250px;
-    height: 350px;
+/* body{ */
+/* } */
+/*  */
+/* .note{ */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     margin: 0 auto; */
+/*     padding: 0px 0px 0px 0px; */
+/*     background-color: blue; */
+/* } */
 
-    z-index: 1000;
-    float: left;
-    display: block;
-    /* position: fixed; */
-    top: 100px;
-    right: 10px;
-
-    background-color: blue;
-    border: 2px solid;
+html,
+body {
+    height: 100%;
+    background-color: #b2e5f0;
 }
 
-.note textarea{
-    margin: 0px auto;
-    width: 90%;
-    height: 50%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+body {
+  padding: 2em 0;
+}
+
+textarea {
+  width: 100%;
+  height: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent transparent transparent #f2f2f2;
+  outline: none;
+  /* background-color: #f0bdb2; */
+}
+
+.full-height {
+  height: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.full-width{
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.fixed {
+  position: fixed;
+}
+
+#preview {
+    background: #eee;
+    display: block;
+}
+#note {
+    background: #ccc;
+    display: none;
+}
+
+html:hover #preview {
+    display: none;
+}
+html:hover #note {
+    display: block;
 }

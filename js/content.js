@@ -1,57 +1,24 @@
-var HTML_TEMPLATES = null;
-
 function buildNote(top, right, bottom, left){
-    // var note_top = top || '0px';
-    // var note_right = right || '0px';
-    // var note_bottom = bottom || '0px';
-    // var note_left = left || '0px';
-
     var noteURL = chrome.extension.getURL('html/iframes/note.html');
 
     var noteUUID = guid();
     var tabUrl = window.location.href;
-    // var newTemplateContext = {
-    //     created_at: new Date(),
-    //     site: tabUrl,
-    //     uuid: noteUUID
-    // };
-    // var templateObj = Handlebars.compile(HTML_TEMPLATES.note);
-    // var template = templateObj(newTemplateContext);
-
-    // $noteDiv = $(template);
-    //
     $noteFrame = $(
         '<iframe />',
         {
             id:'note-'+ noteUUID,
             src:noteURL + '?noteUUID=' + noteUUID,
-            scrolling:false
+            scrolling:false,
+            width: 200,
+            height: 400
         }
     );
-    $noteFrame.attr('draggable', true);
-    // debugger;
-    // var $noteDiv = $('<div>').append($noteFrame);
     var $noteDiv = $noteFrame;
-
-    // $noteDiv.addClass('note');
 
     $noteDiv.css('position', 'fixed');
     $noteDiv.css('right', '5px');
     $noteDiv.css('top', '100px');
-    $noteDiv.css('z-index', 1000000);
-
-    // $noteDiv.resizable();
-    // $noteDiv.draggable(
-    //     {iframeFix: true,
-    //         // appendTo: 'body',
-    //         // zIndex: 9999,
-    //         // cursor: "move",
-    //         // distance: 10,
-    // });
-    // $noteDiv.draggable("option", "iframeFix");
-    // $noteDiv.draggable("option", "iframeFix", true);
-    // $noteDiv.addClass(noteUUID);
-    // $noteDiv.data('uuid', noteUUID);
+    $noteDiv.css('z-index', 9999999);
 
     // attachSaveListener($noteDiv, '#save-note-' + noteUUID);
     // attachAutoSaveListener($noteDiv, '#notearea-' + noteUUID);
@@ -76,8 +43,6 @@ function toggleNoteVisibility(){
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    HTML_TEMPLATES = request.templates;
-
     switch(request.action) {
         case "new-note":
             createNewNote();
