@@ -1,15 +1,15 @@
 function Editor(input, preview) {
   this.update = function () {
-    // preview.innerHTML = markdown.toHTML(input.value);
+    preview.html(markdown.toHTML(input.val()));
   };
   // input.editor = this;
   this.update();
+
+  that = this;
+  $('html').mouseleave(function(){that.update()});
 }
 
 
 $(document).ready(function(){
-    debugger;
-    //$('html').mouseover(function(){showNotePreview(true)});
-    $('html').mouseleave(function(){showNotePreview(false)});
     new Editor($("#note"), $("#preview"));
 });
