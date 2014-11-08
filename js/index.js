@@ -1,15 +1,20 @@
 var DB = {
     saveNote: function(data){
-        var note = JSON.stringify(data.note);
-        window.localStorage.setItem(data.uuid, note);
+        if (!(data.uuid in window.localStorage)){
+            data.created_at = new Date();
+        }
+        chrome.tabs.getSelected(function(tab){
+            data.url = tab.url; data.title = tab.title;
+            data.modified_at = new Date();
+            window.localStorage.setItem(data.uuid, JSON.stringify(data));
+        });
     },
-    // this.loadNote = function (noteUUID){
-    //     return window.localStorage.getItem(noteUUID);
-    // };
-    // this.removeNote = function (noteUUID){
-    //     return window.localStorage.removeItem(noteUUID);
-    // };
-
+    loadNote: function (noteUUID){
+        return JSON.parse(window.localStorage.getItem(noteUUID));
+    },
+    removeNote: function (noteUUID){
+        return window.localStorage.removeItem(noteUUID);
+    },
     // this.listNotes = function (){
     //     //iterate through local storage
     // };
@@ -18,14 +23,9 @@ var DB = {
 
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    // Save Messages
-    // Load saved messages
-    //
     switch(request.type){
         case "save-note":
-            debugger;
             DB.saveNote(request.body);
-            //alert('saving a note..');
             break;
 
         case "remove-note":
@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
         case "load-note":
             resp = DB.loadNote(request.body);
-            sendResponse(resp);
+            // sendResponse(resp);
             alert('saving a note..');
             break;
 
@@ -46,4 +46,3 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             break;
     }
 });
-

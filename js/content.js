@@ -13,20 +13,15 @@ function buildNote(top, right, bottom, left){
             height: 400
         }
     );
-    var $noteDiv = $noteFrame;
 
+    var $noteDiv = $noteFrame;
     $noteDiv.css('position', 'fixed');
     $noteDiv.css('right', '5px');
     $noteDiv.css('top', '100px');
     $noteDiv.css('z-index', 9999999);
-
-    // attachSaveListener($noteDiv, '#save-note-' + noteUUID);
-    // attachAutoSaveListener($noteDiv, '#notearea-' + noteUUID);
-    // attachDeleteListener($noteDiv, '#delete-note-' + noteUUID);
-
+    $noteDiv.css('padding', '2em 0');
+    $noteDiv.css('background-color', 'black');
     return $noteDiv;
-}
-function attachiFrameLoaded(iframecontainer){
 }
 
 function addToPage(note){
@@ -47,7 +42,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         case "new-note":
             createNewNote();
             break;
-        case "toggle-visibility":
+        case "toggle-visibility": // TODO remove this..
             toggleNoteVisibility();
             break;
     }
@@ -63,51 +58,13 @@ var DB = new function(){
     this.load = function(noteUUID){
         this._send({type: 'load-note', body: noteUUID});
     };
-    this.filter = function(query){
+    this.loadAll = function(query){
         this._send({type: 'load-notes', body: query});
     };
     this._send = function(msg, respCallBack){
         chrome.runtime.sendMessage(msg);
     };
 };
-
-function attachAutoSaveListener($el, buttonQuerySelecter){
-    $(buttonQuerySelecter, $el).on('change', function(e){
-        e.preventDefault();
-        var $form = $(this).parent();
-        var noteObj = $form.serializeObject();
-        var noteUUID = $form.data('uuid');
-        var saveMsg = {uuid: noteUUID, note: noteObj};
-        console.log('Auto-saving note: ', noteObj);
-        DB.save(saveMsg);
-        return false;
-    });
-}
-
-function attachSaveListener($el, buttonQuerySelecter){
-    $(buttonQuerySelecter, $el).on('click', function(e){
-        e.preventDefault();
-        var $form = $(this).parent();
-        var noteObj = $form.serializeObject();
-        var noteUUID = $form.data('uuid');
-        var saveMsg = {uuid: noteUUID, note: noteObj};
-        console.log('Save note: ', saveMsg);
-        DB.save(saveMsg);
-        $form.remove();
-        return false;
-    });
-}
-
-function attachDeleteListener($el, buttonQuerySelecter){
-    $(buttonQuerySelecter, $el).on('click', function(e){
-        e.preventDefault();
-        var noteUUID = $(this).parent().data('uuid');
-        console.log('Deleted this note: ', noteUUID);
-        DB.remove(noteUUID);
-        $(this).parent().remove();
-        return false;
-    });
-}
 
 function guid() {
     /* Returns a random uuid */
@@ -138,3 +95,18 @@ $.fn.serializeObject = function()
     });
     return o;
 };
+
+window.addEventListener("message",function(event){
+    if (event.data.action == 'save-note'){
+        console.log('Received autosave msg', event.data);
+        DB.save(event.data);
+    }
+    if (event.data.action == 'remove-note'){
+        console.log('Received remove msg', event.data);
+        DB.remove(event.data);
+    }
+    if (event.data.action == 'load-note'){
+        console.log('Received load msg', event.data);
+        DB.load(event.data);
+    }
+});

@@ -27,4 +27,7 @@ $(document).ready(function(){
             );
         });
     });
+    $('#manage-notes').on('click', function(){
+        chrome.tabs.create({url: chrome.extension.getURL('html/dashboard.html')});
+    });
 });
