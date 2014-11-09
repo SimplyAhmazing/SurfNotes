@@ -58,6 +58,8 @@ function notesController($scope, $filter){
             try{
                 var note = JSON.parse(window.localStorage.getItem(i));
                 note.hostname = $filter('getHostname')(note.url);
+                note.created_at = $filter('date')($filter('asDate')(note.created_at), 'medium');
+                note.modified_at = $filter('date')($filter('asDate')(note.modified_at), 'medium');
                 $scope.notes.push(note);
             }catch (e){
                 console.log("Error reading note", window.localStorage.getItem(i));

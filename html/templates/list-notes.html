@@ -1,4 +1,4 @@
-<li ng-repeat="note in notes | filter: {hostname: filterSitesBy}" id="{{ note.uuid }}">
+<li ng-repeat="note in notes | filter: noteSearch" id="{{ note.uuid }}">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="panel-info">
@@ -9,9 +9,9 @@
                     <dt>Page</dt>
                     <dd><a href="{{ note.url }}">{{ note.url| limitTo: 50 }}</a></dd>
                     <dt>Created on:</dt>
-                    <dd>{{ note.created_at| asDate | date: 'medium' }}</dd>
+                    <dd>{{ note.created_at }}</dd>
                     <dt>Last updated:</dt>
-                    <dd>{{ note.modified_at| asDate | date: 'medium' }}</dd>
+                    <dd>{{ note.modified_at }}</dd>
                 </dl>
             <button ng-click="delete(note.uuid)" class="pull-left btn btn-danger">delete</button>
             <button ng-click="delete(note.uuid)" class="pull-right btn btn-info">view note</button>
