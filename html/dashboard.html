@@ -6,10 +6,18 @@
         <link rel="stylesheet" href="../../css/bootstrap.css">
         <link rel="stylesheet" href="../../css/dashboard.css">
     </head>
-    <body>
-        <div class="col-md-6 col-md-offset-3" ng-controller="notesController">
+    <body ng-controller="notesController" ng-model="filterSitesBy">
+        <div class="col-md-3 col-md-offset-1">
             <div class="row">
-                <div class="page-title"><h1>Manage Notes</h1></div>
+                <div class="page-title"><h1>All Sites</h1></div>
+                <ul id="noteSite" class="list-group">
+                    <list-sites></list-sites>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="page-title"><h1>All Notes</h1></div>
                 <ul id="notes" class="list-group">
                     <list-Notes></list-Notes>
                 </ul>
