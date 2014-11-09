@@ -1,18 +1,18 @@
-<html>
+<html ng-app="surfNotes">
     <head>
-        <script rel="text/javascript" src="../../js/jquery.js"></script>
-        <script rel="text/javascript" src="../../js/jquery.js"></script>
-        <script rel="text/javascript" src="../../js/handlebars.js"></script>
+        <script rel="text/javascript" src="../../js/vendor/angular.js"></script>
         <script rel="text/javascript" src="../../js/markdown.min.js"></script>
         <script rel="text/javascript" src="../../js/dashboard.js"></script>
         <link rel="stylesheet" href="../../css/bootstrap.css">
         <link rel="stylesheet" href="../../css/dashboard.css">
     </head>
     <body>
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-3" ng-controller="notesController">
             <div class="row">
                 <div class="page-title"><h1>Manage Notes</h1></div>
-                <ul id="notes" class="list-group"></ul>
+                <ul id="notes" class="list-group">
+                    <list-Notes></list-Notes>
+                </ul>
             </div>
         </div>
     </body>
