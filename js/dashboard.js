@@ -50,7 +50,7 @@ var surfNotes = angular.module('surfNotes', [
 angular.module('surfNotes.controllers', [])
     .controller('notesController', notesController);
 
-function notesController($scope, $filter){
+function notesController($scope, $filter, $sce){
     function init(){
         $scope.notes = [];
         $scope.noteSites = [];
@@ -60,6 +60,7 @@ function notesController($scope, $filter){
                 note.hostname = $filter('getHostname')(note.url);
                 note.created_at = $filter('date')($filter('asDate')(note.created_at), 'medium');
                 note.modified_at = $filter('date')($filter('asDate')(note.modified_at), 'medium');
+                note.notePreview = $sce.trustAsHtml($filter('parseMarkdown')(note.note));
                 $scope.notes.push(note);
             }catch (e){
                 console.log("Error reading note", window.localStorage.getItem(i));
@@ -115,6 +116,11 @@ angular.module('surfNotes.filters', [])
             var parser = document.createElement('a');
             parser.href = url;
             return parser.hostname;
+        }
+    })
+    .filter("parseMarkdown", function () {
+        return function (text) {
+            return markdown.toHTML(text);
         }
     });
 

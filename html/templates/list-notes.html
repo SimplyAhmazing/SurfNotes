@@ -13,6 +13,7 @@
                     <dt>Last updated:</dt>
                     <dd>{{ note.modified_at }}</dd>
                 </dl>
+                <div class="note-preview" ng-bind-html="note.notePreview"></div>
             <button ng-click="delete(note.uuid)" class="pull-left btn btn-danger">delete</button>
             <button ng-click="delete(note.uuid)" class="pull-right btn btn-info">view note</button>
             </div>

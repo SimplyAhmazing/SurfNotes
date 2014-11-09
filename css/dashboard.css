@@ -10,3 +10,9 @@
 .page-title{
   text-align: center;
 }
+
+.note-preview{
+  border: 2px dotted;
+  width: 200px;
+  margin: 0px auto;
+}
