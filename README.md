@@ -1,4 +1,4 @@
-Surf Notes is a Chrome Extension that let's you take notes as you surf the web without interrupting your browsing experience.
+Surf Notes is a [Chrome Extension](https://chrome.google.com/webstore/detail/surf-notes/lpcfhdlkccgfdpglngnjambdfloflhdp) that let's you take notes as you surf the web without interrupting your browsing experience.
 
 Have you ever watched an online video or read an online article and came to a point where you wanted to jot down some notes or copy paste some text for reference? I do all the time. Every single time I want to make a note of something I have to switch to my "Notes" app, pull up my email, or grab a pen and paper. I have to interrupt my web surfing experience in order to make a note of something. I shouldn't have to leave my current web page in order to take notes.
 
