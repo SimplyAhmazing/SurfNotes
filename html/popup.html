@@ -1,10 +1,26 @@
 <!-- popup.html-->
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/popup.js"></script>
+<style>
+    .btn {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 2px;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 18px;
+        background: #3bcc5d;
+        text-decoration: none;
+        width: 100%;
+    }
 
-<div style="width:200px">
-    <button id="new-note">New Note</button><br>
-    <button id="load-notes">Load Notes</button><br>
-    <button id="manage-notes">Manage Notes</button><br>
-    <button id="note-visibility">Hide Notes</button><br>
+    .btn:hover {
+        background: #fc9f3c;
+        text-decoration: none;
+    }
+</style>
+
+<div style="width:150px">
+    <button class="btn btn-primary" id="new-note">New Note</button><br>
+    <button class="btn btn-primary" id="manage-notes">Manage Notes</button>
 </div>
