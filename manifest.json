@@ -40,7 +40,7 @@
         ]
     }],
     "web_accessible_resources": [
-        "src/*"
+        "src/*",
     ],
     "content_security_policy": "default-src 'none'; style-src 'unsafe-inline'; script-src 'self' 'unsafe-eval';"
 }
