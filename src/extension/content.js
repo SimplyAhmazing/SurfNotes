@@ -1,5 +1,5 @@
 function buildNote(top, right, bottom, left){
-    var noteURL = chrome.extension.getURL('html/iframes/note.html');
+    var noteURL = chrome.extension.getURL('src/note/note.html');
 
     var noteUUID = guid();
     var tabUrl = window.location.href;

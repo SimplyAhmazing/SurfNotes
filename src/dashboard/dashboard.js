@@ -49,16 +49,16 @@ angular.module('surfNotes.directives', []).
         return {
             restrict: "EA",
             replace: true,
-            templateUrl: chrome.extension.getURL("html/templates/list-notes.html")
+            templateUrl: chrome.extension.getURL("src/note/list-notes.html")
         }
     })
-    .directive("listSites", function(){
-        return {
-            restrict: "EA",
-            replace: true,
-            templateUrl: chrome.extension.getURL("html/templates/list-sites.html")
-        }
-    })
+    // .directive("listSites", function(){
+    //     return {
+    //         restrict: "EA",
+    //         replace: true,
+    //         templateUrl: chrome.extension.getURL("html/templates/list-sites.html")
+    //     }
+    // })
 
 angular.module('surfNotes.filters', [])
     .filter("asDate", function () {
